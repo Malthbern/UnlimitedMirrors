@@ -16,7 +16,7 @@ namespace Unlimited_Mirrors
             public const string Author = "Malthbern";
             public const string Company = null;
             public const string Version = "1.0.0";
-            public const string DownloadLink = "https://github.com/Malthbern/Zoom_Lens/releases";
+            public const string DownloadLink = "https://github.com/Malthbern/UnlimitedMirrors/releases";
         }
 
         public override void OnInitializeMelon()
@@ -36,18 +36,17 @@ namespace Unlimited_Mirrors
     {
         [HarmonyPrefix]
         [HarmonyPatch(typeof(PortableMirrorInstance), "CreateMirrorAtView")] 
-        public static PortableMirrorInstance CreateMirrorAtView()
+        public static bool CreateMirrorAtView(ref PortableMirrorInstance __result)
         {
             Transform playerCamTransform = PlayerSetup.Instance.activeCam.transform;
             Vector3 transForward = playerCamTransform.forward;
         
             PortableMirrorInstance mirrorInstance = PortableMirrorInstance.CreateMirror();
-            mirrorInstance.transform.position = playerCamTransform.position +
-                                                transForward * (PlayerSetup.Instance.GetPlaySpaceScale() * 1f);
-            mirrorInstance.transform.rotation =
-                Quaternion.LookRotation(transForward, PlayerSetup.Instance.transform.up);
+            mirrorInstance.transform.position = playerCamTransform.position + transForward * (PlayerSetup.Instance.GetPlaySpaceScale() * 1f);
+            mirrorInstance.transform.rotation = Quaternion.LookRotation(transForward, PlayerSetup.Instance.transform.up);
         
-            return mirrorInstance;
+            __result = mirrorInstance;
+            return false;
         }
     }
 }
