@@ -7,17 +7,19 @@ using ABI_RC.Core.Player.PortableMirror;
 
 namespace Unlimited_Mirrors
 {
+    public static class BuildInfo
+         {
+             public const string Name = "Unlimited Mirrors";
+             public const string Description = "A fun way to get 1 FPS";
+             public const string Author = "Malthbern";
+             public const string Company = null;
+             public const string Version = "1.0.0";
+             public const string DownloadLink = "https://github.com/Malthbern/UnlimitedMirrors/releases";
+         }
+    
     public class UnlimitedMirroring : MelonMod
     {
-        public static class BuildInfo
-        {
-            public const string Name = "Unlimited Mirrors";
-            public const string Description = "A fun way to get 1 FPS";
-            public const string Author = "Malthbern";
-            public const string Company = null;
-            public const string Version = "1.0.0";
-            public const string DownloadLink = "https://github.com/Malthbern/UnlimitedMirrors/releases";
-        }
+        
 
         public override void OnInitializeMelon()
         {
