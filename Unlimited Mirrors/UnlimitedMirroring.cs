@@ -38,6 +38,15 @@ namespace Unlimited_Mirrors
     {
         [HarmonyPrefix]
         [HarmonyPatch(typeof(PortableMirrorInstance), "CreateMirrorAtView")] 
+        
+        /*
+         * The following code was taken from ChilloutVR's source with permission.
+         * it has been slightly modified to ignore any limiting of how many mirrors can
+         * be spawned at any time as well as to work as a Harmony patch
+         *
+         * This disclaimer is here to abide with §6.2 of the ChilloutVR ToS
+         */
+        
         public static bool CreateMirrorAtView(ref PortableMirrorInstance __result)
         {
             Transform playerCamTransform = PlayerSetup.Instance.activeCam.transform;
